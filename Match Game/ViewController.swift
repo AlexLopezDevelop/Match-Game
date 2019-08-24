@@ -14,6 +14,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     var model = CardModel()
     var cardArray = [Card]()
+    
+    var firstFlippedCardIndex: IndexPath?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,18 +50,52 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         let card = cardArray[indexPath.row]
         
-        if card.isFlipped {
+        if card.isFlipped == false {
             
-            cell.flipBack()
-            card.isFlipped = false
-            
-        } else {
-           
             cell.flip()
             card.isFlipped = true
             
+            if firstFlippedCardIndex == nil {
+                
+                firstFlippedCardIndex = indexPath
+                
+            } else {
+                
+                checkForMatches(indexPath)
+            }
+            
         }
-    
-        
     }
+    
+    // MARK: - Game logic methods
+    
+    func checkForMatches(_ secondFlippedCardIndex: IndexPath) {
+     
+        let cardOneCell = collectionView.cellForItem(at: firstFlippedCardIndex!) as? CardCollectionViewCell
+        let cardTwoCell = collectionView.cellForItem(at: secondFlippedCardIndex) as? CardCollectionViewCell
+        
+        let cardOne = cardArray[firstFlippedCardIndex!.row]
+        let cardTwo = cardArray[secondFlippedCardIndex.row]
+        
+        if cardOne.imageName == cardTwo.imageName {
+            
+            cardOne.isMatched = true
+            cardTwo.isMatched = true
+            
+            cardOneCell?.remove()
+            cardTwoCell?.remove()
+            
+        } else {
+            
+            cardOne.isFlipped = false
+            cardTwo.isFlipped = false
+            
+            cardOneCell?.flipBack()
+            cardTwoCell?.flipBack()
+            
+        }
+
+        firstFlippedCardIndex = nil
+    }
+    
 }
