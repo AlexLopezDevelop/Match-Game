@@ -14,6 +14,8 @@
 		AC133DBD231171F1002EDDD0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC133DBB231171F1002EDDD0 /* LaunchScreen.storyboard */; };
 		AC133DC8231171F1002EDDD0 /* Match_GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC133DC7231171F1002EDDD0 /* Match_GameTests.swift */; };
 		AC133DD3231171F1002EDDD0 /* Match_GameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC133DD2231171F1002EDDD0 /* Match_GameUITests.swift */; };
+		AC133DE123117684002EDDD0 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC133DE023117684002EDDD0 /* CardModel.swift */; };
+		AC133DE523117761002EDDD0 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC133DE423117761002EDDD0 /* Card.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		AC133DCE231171F1002EDDD0 /* Match GameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Match GameUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC133DD2231171F1002EDDD0 /* Match_GameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match_GameUITests.swift; sourceTree = "<group>"; };
 		AC133DD4231171F1002EDDD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AC133DE023117684002EDDD0 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
+		AC133DE423117761002EDDD0 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,8 @@
 		AC133DB1231171F0002EDDD0 /* Match Game */ = {
 			isa = PBXGroup;
 			children = (
+				AC133DE323117753002EDDD0 /* Objects */,
+				AC133DE223117689002EDDD0 /* Models */,
 				AC133DB2231171F0002EDDD0 /* AppDelegate.swift */,
 				AC133DB4231171F0002EDDD0 /* ViewController.swift */,
 				AC133DB6231171F0002EDDD0 /* Main.storyboard */,
@@ -123,6 +129,22 @@
 				AC133DD4231171F1002EDDD0 /* Info.plist */,
 			);
 			path = "Match GameUITests";
+			sourceTree = "<group>";
+		};
+		AC133DE223117689002EDDD0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AC133DE023117684002EDDD0 /* CardModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AC133DE323117753002EDDD0 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				AC133DE423117761002EDDD0 /* Card.swift */,
+			);
+			path = Objects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,7 +279,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC133DB5231171F0002EDDD0 /* ViewController.swift in Sources */,
+				AC133DE123117684002EDDD0 /* CardModel.swift in Sources */,
 				AC133DB3231171F0002EDDD0 /* AppDelegate.swift in Sources */,
+				AC133DE523117761002EDDD0 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
