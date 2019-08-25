@@ -34,6 +34,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         RunLoop.main.add(timer!, forMode: .common)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+        SoundManager.playSound(.shuffle)
+    }
+    
     // MARK: - Timer Methods
     
     @objc func timerElapsed() {
@@ -85,6 +90,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             cell.flip()
             card.isFlipped = true
             
+            SoundManager.playSound(.flip)
+            
             if firstFlippedCardIndex == nil {
                 
                 firstFlippedCardIndex = indexPath
@@ -109,6 +116,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         if cardOne.imageName == cardTwo.imageName {
             
+            SoundManager.playSound(.match)
+            
             cardOne.isMatched = true
             cardTwo.isMatched = true
             
@@ -118,6 +127,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             checkGameEnded()
             
         } else {
+            
+            SoundManager.playSound(.nomatch)
             
             cardOne.isFlipped = false
             cardTwo.isFlipped = false

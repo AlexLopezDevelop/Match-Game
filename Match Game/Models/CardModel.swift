@@ -12,19 +12,26 @@ class CardModel {
     
     func getCards() -> [Card] {
         
+        var generatedNumbersArray = [Int]()
+        
         var generatedCardsArray = [Card]()
         
-        for _ in 1...8 {
+        while generatedNumbersArray.count < 8 {
             
             let randomNumber = arc4random_uniform(13) + 1
             
-            let cardOne = Card()
-            cardOne.imageName = "card\(randomNumber)"
-            generatedCardsArray.append(cardOne)
-            
-            let cardTwo = Card()
-            cardTwo.imageName = "card\(randomNumber)"
-            generatedCardsArray.append(cardTwo)
+            if generatedNumbersArray.contains(Int(randomNumber)) == false {
+                
+                generatedNumbersArray.append(Int(randomNumber))
+                
+                let cardOne = Card()
+                cardOne.imageName = "card\(randomNumber)"
+                generatedCardsArray.append(cardOne)
+                
+                let cardTwo = Card()
+                cardTwo.imageName = "card\(randomNumber)"
+                generatedCardsArray.append(cardTwo)
+            }
         }
         
         return generatedCardsArray
