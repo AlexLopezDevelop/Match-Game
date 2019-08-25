@@ -22,8 +22,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YYO-4J-8Sp">
-                                <rect key="frame" x="20" y="44" width="374" height="818"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="20" y="90" width="374" height="772"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="g3a-XF-krh">
                                     <size key="itemSize" width="102" height="146"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -63,22 +63,33 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time remaining: 10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZpS-Vy-DTv">
+                                <rect key="frame" x="20" y="54" width="374" height="21"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="ZpS-Vy-DTv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="3bK-HS-8Up"/>
                             <constraint firstAttribute="bottomMargin" secondItem="daq-LH-SqB" secondAttribute="bottom" constant="-34" id="LLK-20-wRc"/>
-                            <constraint firstItem="YYO-4J-8Sp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="XDY-hg-tKA"/>
+                            <constraint firstItem="ZpS-Vy-DTv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="O2i-mI-q8G"/>
                             <constraint firstItem="daq-LH-SqB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="cBl-ga-ZDM"/>
                             <constraint firstItem="daq-LH-SqB" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="-44" id="q1Y-pe-HaM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="YYO-4J-8Sp" secondAttribute="bottom" id="rYY-yp-BLP"/>
                             <constraint firstItem="YYO-4J-8Sp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="rgP-My-xXY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZpS-Vy-DTv" secondAttribute="trailing" constant="20" id="s4H-qq-6wb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="daq-LH-SqB" secondAttribute="trailing" constant="-20" id="t9a-T2-0jx"/>
+                            <constraint firstItem="YYO-4J-8Sp" firstAttribute="top" secondItem="ZpS-Vy-DTv" secondAttribute="bottom" constant="15" id="u7a-iy-LKe"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="YYO-4J-8Sp" secondAttribute="trailing" constant="20" id="w8Q-ep-O6E"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="YYO-4J-8Sp" id="BVC-IA-qmC"/>
+                        <outlet property="timeRemaining" destination="ZpS-Vy-DTv" id="KIv-Yc-6ED"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

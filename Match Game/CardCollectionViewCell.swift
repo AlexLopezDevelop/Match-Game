@@ -17,6 +17,19 @@ class CardCollectionViewCell: UICollectionViewCell {
     
     func setCard(_ card: Card) {
         
+        if card.isMatched {
+            
+            backImageView.alpha = 0
+            frontImageView.alpha = 0
+            
+            return
+            
+        } else {
+            
+            backImageView.alpha = 1
+            frontImageView.alpha = 1
+        }
+        
         self.card = card
         
         frontImageView.image = UIImage(named: card.imageName)

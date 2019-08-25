@@ -11,11 +11,15 @@ import UIKit
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var timeRemaining: UILabel!
     
     var model = CardModel()
     var cardArray = [Card]()
     
     var firstFlippedCardIndex: IndexPath?
+    
+    var timer: Timer?
+    var milliseconds: Float = 10 * 1000 // 10 seconds
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +28,28 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         collectionView.dataSource = self
         
         cardArray = model.getCards()
+        
+        timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(timerElapsed), userInfo: nil, repeats: true)
+        
+        RunLoop.main.add(timer!, forMode: .common)
+    }
+    
+    // MARK: - Timer Methods
+    
+    @objc func timerElapsed() {
+        
+        milliseconds -= 1
+        
+        let seconds = String(format: "%.2f", milliseconds/1000)
+        timeRemaining.text = "Time remaining: \(seconds)"
+        
+        if milliseconds <= 0 {
+            
+            timer?.invalidate()
+            timeRemaining.textColor = UIColor.red
+            
+            checkGameEnded()
+        }
     }
 
     // MARK: - UICollectionView Protocol Methods
@@ -46,11 +72,15 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        if milliseconds <= 0 {
+            return
+        }
+        
         let cell = collectionView.cellForItem(at: indexPath) as! CardCollectionViewCell
         
         let card = cardArray[indexPath.row]
         
-        if card.isFlipped == false {
+        if card.isFlipped == false && card.isMatched == false {
             
             cell.flip()
             card.isFlipped = true
@@ -85,6 +115,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             cardOneCell?.remove()
             cardTwoCell?.remove()
             
+            checkGameEnded()
+            
         } else {
             
             cardOne.isFlipped = false
@@ -94,8 +126,62 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             cardTwoCell?.flipBack()
             
         }
-
+        
+        if cardOneCell == nil {
+            
+            collectionView.reloadItems(at: [firstFlippedCardIndex!])
+        }
+        
         firstFlippedCardIndex = nil
+    }
+    
+    func checkGameEnded() {
+        
+        var isWon = true
+        
+        for card in cardArray {
+            
+            if card.isMatched == false {
+                
+                isWon = false
+                break
+            }
+        }
+        
+        var title = ""
+        var message = ""
+        
+        if isWon == true {
+            
+            if milliseconds > 0 {
+                
+                timer?.invalidate()
+            }
+            
+            title = "Congratulations!!!"
+            message = "You've won"
+            
+        } else {
+            
+            if milliseconds > 0 {
+                
+                return
+            }
+            
+            title = "Game Over"
+            message = "You've lost"
+        }
+        
+        showAlert(title, message)
+    }
+    
+    func showAlert(_ title: String, _ message: String) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(alertAction)
+        
+        present(alert, animated: true, completion: nil)
     }
     
 }
