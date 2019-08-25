@@ -34,6 +34,8 @@ class CardModel {
             }
         }
         
+        generatedCardsArray.shuffle()
+        
         return generatedCardsArray
     }
     
